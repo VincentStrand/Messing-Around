@@ -55,20 +55,23 @@ void charStats()
 	{
 		cout << "You chose, Fighter!\n";
 		player.classType = "Fighter";
+		player.health = 300;
 	}
 
 	if (choice == 2)
 	{
 		cout << "You chose, Mage!\n";
 		player.classType = "Mage";
+		player.health = 100;
 	}
 
 	if (choice == 3)
 	{
 		cout << "You chose, Bard!\n";
 		player.classType = "Bard";
+		player.health = 200;
 	}
 	
-	cout << "You are a " << player.classType << ", and your name is " << player.name << "." << endl;
+	cout << "You are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health" <<"." << endl;
 }
 
