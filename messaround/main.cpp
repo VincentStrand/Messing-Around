@@ -13,11 +13,21 @@ Here is a list of items I would like to implement eventualy, this list may chang
 */
 #include <iostream>
 #include <string>
-
+using namespace std;
 void menu();
 void charStats();
 
-using namespace std;
+// Main character information
+class charInfo
+{
+public:
+	string name;
+	int health = 100;
+	string classType;
+};
+charInfo player;
+
+
 int main() 
 {
 	menu();
@@ -27,14 +37,14 @@ int main()
 void menu()
 {
 	cout << " WELCOME TO THE GAME " << endl;
-	string name;
 	cout << "Please enter you name: ";
-	getline(cin, name);
-	cout << "\nHello " << name << " Nice to meet you\n" << endl;
+	cin >> player.name;
+	cout << "\nHello " << player.name << " Nice to meet you\n" << endl;
 }
 
 void charStats()
 {
+	
 	cout << "You will now choose your characters stats:\n";
 	// Class list
 	cout << " 1: Fighter\n 2: Mage\n 3: Bard\n";
@@ -43,17 +53,22 @@ void charStats()
 	cin >> choice;
 	if (choice == 1)
 	{
-		cout << "You chose, Fighter!";
+		cout << "You chose, Fighter!\n";
+		player.classType = "Fighter";
 	}
 
 	if (choice == 2)
 	{
-		cout << "You chose, Mage!";
+		cout << "You chose, Mage!\n";
+		player.classType = "Mage";
 	}
 
 	if (choice == 3)
 	{
-		cout << "You chose, Bard!";
+		cout << "You chose, Bard!\n";
+		player.classType = "Bard";
 	}
+	
+	cout << "You are a " << player.classType << ", and your name is " << player.name << "." << endl;
 }
 
