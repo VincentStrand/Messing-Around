@@ -13,6 +13,7 @@ Here is a list of items I would like to implement eventualy, this list may chang
 */
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 void menu();
 void charStats();
@@ -26,7 +27,7 @@ public:
 	string classType;
 };
 charInfo player;
-
+fstream outputClass;
 
 int main() 
 {
@@ -73,5 +74,8 @@ void charStats()
 	}
 	
 	cout << "You are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health" <<"." << endl;
+	outputClass.open("Class.txt");
+	outputClass << player.name << "\n" << player.health << "\n" << player.classType << "\n" << endl;
+	outputClass.close();
 }
 
