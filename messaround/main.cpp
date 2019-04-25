@@ -22,12 +22,14 @@ void charStats();
 class charInfo
 {
 public:
+	ofstream outputClass;
+	ofstream inventory;
 	string name;
 	int health = 100;
 	string classType;
 };
 charInfo player;
-fstream outputClass;
+
 
 int main() 
 {
@@ -57,6 +59,9 @@ void charStats()
 		cout << "You chose, Fighter!\n";
 		player.classType = "Fighter";
 		player.health = 300;
+		player.inventory.open("inventory.txt");
+		player.inventory << "Sword: 1\nPotion: 2\Shield: 1\n";
+		player.inventory.close();
 	}
 
 	if (choice == 2)
@@ -64,6 +69,9 @@ void charStats()
 		cout << "You chose, Mage!\n";
 		player.classType = "Mage";
 		player.health = 100;
+		player.inventory.open("inventory.txt");
+		player.inventory << "Staff: 1\nPotion: 10\nSpellbook: 1\n";
+		player.inventory.close();
 	}
 
 	if (choice == 3)
@@ -71,11 +79,20 @@ void charStats()
 		cout << "You chose, Bard!\n";
 		player.classType = "Bard";
 		player.health = 200;
+		player.inventory.open("inventory.txt");
+		player.inventory << "Sword: 1\nPotion: 2\nInstrument: 1\n";
+		player.inventory.close();
 	}
 	
 	cout << "You are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health" <<"." << endl;
-	outputClass.open("Class.txt");
-	outputClass << player.name << "\n" << player.health << "\n" << player.classType << "\n" << endl;
-	outputClass.close();
+	player.outputClass.open("Class.txt");
+	player.outputClass << player.name << "\n" << player.health << "\n" << player.classType << "\n" << endl;
+	player.outputClass.close();
+	
+}
+
+void inventory()
+{
+	
 }
 
