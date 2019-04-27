@@ -10,13 +10,27 @@ Here is a list of items I would like to implement eventualy, this list may chang
 
 4. sudo open world 
 
+
+
+TODO:
+add story/quest
+add ui
+be able to use the stats in the text file
+be able to use the inventory
+add combat with class specific attacks with rng
+add class specific actions/attacks
+
+	- The Count of the Bermuda Triangle 2019
 */
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <stdlib.h>
 using namespace std;
 void menu();
 void charStats();
+void mainGame();
+void combat();
 
 // Main character information
 class charInfo
@@ -34,20 +48,28 @@ charInfo player;
 int main() 
 {
 	menu();
-	charStats();
+	//charStats();
+	//mainGame();
 }
 
 void menu()
 {
-	cout << " WELCOME TO THE GAME " << endl;
-	cout << "Please enter you name: ";
-	cin >> player.name;
-	cout << "\nHello " << player.name << " Nice to meet you\n" << endl;
+	string choice;
+	cout << "PLAY\tor\tQUIT\n: ";
+	getline(cin, choice);
+	if (choice == "play")
+		charStats();
+	if (choice == "quit")
+		charStats();
 }
 
 void charStats()
 {
-	
+	system("CLS");
+	cout << " WELCOME TO THE GAME " << endl;
+	cout << "Please enter you name: ";
+	cin >> player.name;
+	cout << "\nHello " << player.name << " Nice to meet you\n" << endl;
 	cout << "You will now choose your characters stats:\n";
 	// Class list
 	cout << " 1: Fighter\n 2: Mage\n 3: Bard\n";
@@ -60,7 +82,7 @@ void charStats()
 		player.classType = "Fighter";
 		player.health = 300;
 		player.inventory.open("inventory.txt");
-		player.inventory << "Sword: 1\nPotion: 2\Shield: 1\n";
+		player.inventory << "Sword: 1\nPotion: 2\nShield: 1\n";
 		player.inventory.close();
 	}
 
@@ -86,13 +108,30 @@ void charStats()
 	
 	cout << "You are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health" <<"." << endl;
 	player.outputClass.open("Class.txt");
-	player.outputClass << player.name << "\n" << player.health << "\n" << player.classType << "\n" << endl;
+	player.outputClass << "Name: "<< player.name << "\nHealth: " << player.health << "\nClass: " << player.classType << "\n" << endl;
 	player.outputClass.close();
-	
+	mainGame();
 }
 
-void inventory()
+void mainGame()
 {
-	
+	system("CLS");
+	cout << "You are going to attacked by some bandits because you are an alpha tester, good luck!\n";
+	string direction;
+	getline(cin, direction);
+	// later picking a direction will actualy do something
+	combat();
 }
+
+void combat()
+{
+	system("CLS");
+	// enemyNum will be random later
+	int enemyNum = 3;
+	// enemyType will be random later
+	string enemyType = "Bandits";
+	cout << "You have encountered some enemies!\n";
+	cout << "The enemies are: " << enemyType << " and there are " << enemyNum << " of them." ;
+}
+
 

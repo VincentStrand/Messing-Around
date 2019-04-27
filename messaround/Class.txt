@@ -1,4 +1,4 @@
-v
-100
-Mage
+Name: Bob
+Health: 200
+Class: Bard
 
