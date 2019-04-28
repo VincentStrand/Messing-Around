@@ -1,4 +1,4 @@
-Name: yorbert
-Health: 100
-Class: Mage
+Name: poodoo
+Health: 300
+Class: Fighter
 

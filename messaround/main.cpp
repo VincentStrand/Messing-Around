@@ -1,4 +1,4 @@
-/*This is the begining of a text based game. Hopefully I will be able to add some Rpg elements like stats and character 
+﻿/*This is the begining of a text based game. Hopefully I will be able to add some Rpg elements like stats and character 
 classes.
 Here is a list of items I would like to implement eventualy, this list may change:
 
@@ -9,6 +9,10 @@ Here is a list of items I would like to implement eventualy, this list may chang
 3. random enemies with random stats
 
 4. sudo open world 
+
+5. add level system that buffs your attacks so as you level up you become stronger and maybe unlock new attacks or spells or songs
+
+6. each enemy needs thier own xp number for leveling
 
 
 
@@ -42,6 +46,7 @@ public:
 	int health;
 	string classType;
 	string attacks;
+	int level;
 };
 charInfo player;
 
@@ -90,6 +95,7 @@ void charStats()
 		cout << "You chose, Fighter!\n";
 		player.classType = "Fighter";
 		player.health = 300;
+		player.attacks = "1: Slash - 30dmg\n2: Stab - 40dmg\n3: End Him Rightly - 50dmg";
 		player.inventory.open("inventory.txt");
 		player.inventory << "Sword: 1\nPotion: 2\nShield: 1\n";
 		player.inventory.close();
@@ -111,12 +117,13 @@ void charStats()
 		cout << "You chose, Bard!\n";
 		player.classType = "Bard";
 		player.health = 200;
+		player.attacks = "1: Slash - 20dmg\n2: Rick Roll- 50dmg\n3: The William Tell Overture - 100dmg";
 		player.inventory.open("inventory.txt");
 		player.inventory << "Sword: 1\nPotion: 2\nInstrument: 1\n";
 		player.inventory.close();
 	}
 	
-	cout << "You are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health" <<"." << endl;
+	cout << "\nYou are a " << player.classType << ", and your name is " << player.name << " and you have " << player.health << " health\n" <<"." << endl;
 	player.outputClass.open("Class.txt");
 	player.outputClass << "Name: "<< player.name << "\nHealth: " << player.health << "\nClass: " << player.classType << "\n" << endl;
 	player.outputClass.close();
@@ -143,7 +150,7 @@ void combat()
 	bandit.health = 100;
 	system("CLS");
 	// enemyNum will be random later
-	int enemyNum = 3;
+	int enemyNum = 1;
 	// enemyType will be random later
 	string enemyType = "Bandits";
 	while (bandit.health > 0)
@@ -151,6 +158,7 @@ void combat()
 		cout << "You have encountered some enemies!\n";
 		cout << "The enemies are: " << enemyType << " and there are " << enemyNum << " of them.\n\n";
 		cout << "The enemy has " << bandit.health << " health left.\n\n";
+		cout << "You, '" << player.name << "', have " << player.health << " health left.\n\n";
 		cout << "Your attacks are: \n" << player.attacks << "\n\nWhat will you do?: ";
 		int attack;
 		cin >> attack;
@@ -177,7 +185,7 @@ void combat()
 		system("CLS");
 	}
 
-	cout << "\n\nYou killed all the enemies!\n";
+	cout << "\nYou killed all the enemies!\n";
 	system("PAUSE");
 	mainGame();
 	
