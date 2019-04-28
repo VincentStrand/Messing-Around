@@ -1,3 +1,3 @@
-Sword: 1
-Potion: 2
-Instrument: 1
+Staff: 1
+Potion: 10
+Spellbook: 1

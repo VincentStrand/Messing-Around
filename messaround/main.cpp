@@ -39,10 +39,19 @@ public:
 	ofstream outputClass;
 	ofstream inventory;
 	string name;
-	int health = 100;
+	int health;
 	string classType;
+	string attacks;
 };
 charInfo player;
+
+class enemies
+{
+public:
+	int health;
+
+
+};
 
 
 int main() 
@@ -55,7 +64,7 @@ int main()
 void menu()
 {
 	string choice;
-	cout << "PLAY\tor\tQUIT\n: ";
+	cout << "PLAY\tor\tQUIT\n\n\n: ";
 	getline(cin, choice);
 	if (choice == "play")
 		charStats();
@@ -91,6 +100,7 @@ void charStats()
 		cout << "You chose, Mage!\n";
 		player.classType = "Mage";
 		player.health = 100;
+		player.attacks = "1: Fireball - 20dmg\n2: Poisonbolt - 30dmg\n3: Magic Lightning - 40dmg";
 		player.inventory.open("inventory.txt");
 		player.inventory << "Staff: 1\nPotion: 10\nSpellbook: 1\n";
 		player.inventory.close();
@@ -110,6 +120,7 @@ void charStats()
 	player.outputClass.open("Class.txt");
 	player.outputClass << "Name: "<< player.name << "\nHealth: " << player.health << "\nClass: " << player.classType << "\n" << endl;
 	player.outputClass.close();
+	system("PAUSE");
 	mainGame();
 }
 
@@ -117,21 +128,59 @@ void mainGame()
 {
 	system("CLS");
 	cout << "You are going to attacked by some bandits because you are an alpha tester, good luck!\n";
+
 	string direction;
 	getline(cin, direction);
+	system("PAUSE");
+
 	// later picking a direction will actualy do something
 	combat();
 }
 
 void combat()
 {
+	enemies bandit;
+	bandit.health = 100;
 	system("CLS");
 	// enemyNum will be random later
 	int enemyNum = 3;
 	// enemyType will be random later
 	string enemyType = "Bandits";
-	cout << "You have encountered some enemies!\n";
-	cout << "The enemies are: " << enemyType << " and there are " << enemyNum << " of them." ;
+	while (bandit.health > 0)
+	{
+		cout << "You have encountered some enemies!\n";
+		cout << "The enemies are: " << enemyType << " and there are " << enemyNum << " of them.\n\n";
+		cout << "The enemy has " << bandit.health << " health left.\n\n";
+		cout << "Your attacks are: \n" << player.attacks << "\n\nWhat will you do?: ";
+		int attack;
+		cin >> attack;
+		switch (attack)
+		{
+		case 1:
+			bandit.health -= 20;
+			cout << "You cast Fireball doing 20dmg!\n\n";
+			break;
+		case 2:
+			bandit.health -= 30;
+			cout << "You cast Poisonbolt doing 30dmg!\n\n";
+			break;
+		case 3:
+			bandit.health -= 40;
+			cout << "You cast Lighting doing 40dmg!\n\n";
+			break;
+		default:
+			cout << "Please choose an attack\n";
+
+		}
+		cout << "The enemy has " << bandit.health << " health left.\n\n";
+		system("PAUSE");
+		system("CLS");
+	}
+
+	cout << "\n\nYou killed all the enemies!\n";
+	system("PAUSE");
+	mainGame();
+	
 }
 
 

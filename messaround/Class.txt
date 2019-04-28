@@ -1,4 +1,4 @@
-Name: Bob
-Health: 200
-Class: Bard
+Name: yorbert
+Health: 100
+Class: Mage
 
